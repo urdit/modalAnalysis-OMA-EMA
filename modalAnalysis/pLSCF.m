@@ -56,13 +56,13 @@ n_outputsRef = 2;
 
 % Setting of the minimum and maxium model order 
 modelOrder_min = 5;
-modelOrder_max = 30;
+modelOrder_max = 50;
 
 % Specify the examined frequency band. frequencyMax must be smaller than
 % fs/2.
 % 频率带宽
 frequencyBand_min = 20;
-frequencyBand_max = 2000;
+frequencyBand_max = 3000;
 
 % Sampling frequency [Hz] of the sampling records
 % 采样频率

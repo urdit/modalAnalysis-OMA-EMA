@@ -158,4 +158,6 @@ poles_zDomain = eig(companionMatrix);
 poles_fDomain = zeros(modelOrder_max * n_outputsRed, 1);
 
 % Transformation of the poles into frequency-domain
-poles_fDomain(1 : size(poles_zDomain)) = log(poles_zDomain) / deltaTime;
+% 改：希望索引操作使用 poles_zDomain 的行数，因此它将返回一个标量而不是向量
+% poles_fDomain(1 : size(poles_zDomain)) = log(poles_zDomain) / deltaTime;
+poles_fDomain(1 : size(poles_zDomain, 1)) = log(poles_zDomain) / deltaTime;

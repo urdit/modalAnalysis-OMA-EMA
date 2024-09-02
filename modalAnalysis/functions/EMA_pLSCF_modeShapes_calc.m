@@ -69,7 +69,13 @@ capitalLambda(1, i_physicalStablePoles + 2) = capitalLambda(2, i_physicalStableP
 FRF_res = squeeze(PSDoFRF);
 
 % Computation of the residues
-residue = capitalLambda \ FRF_res;
+% 改：为了解决秩亏问题，通过在矩阵的对角线上添加一个小的正则化项，从而提高矩阵的数值稳定性，称为“正则化”。
+% residue = capitalLambda \ FRF_res;
+epsilon = 1e-10;  % 正则化参数，根据需要调整
+capitalLambda_reg = capitalLambda + epsilon * eye(size(capitalLambda));
+% 使用正则化后的矩阵求解
+residue = capitalLambda_reg \ FRF_res;
+
 
 % Computation of the complex modeshapes
 complexModes = residue(1 : n_physicalStablePoles, :).';
